@@ -11,7 +11,7 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log("IN SCAFFOLD BUILD");
-    CounterController counterController = Get.put(CounterController());
+    // CounterController counterController = Get.put(CounterController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter app'),
@@ -31,22 +31,24 @@ class MyScaffold extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Obx(() {
-              return Text(
-                "${counterController.counterModel.value.count}",
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              );
-            })
+            GetX(
+                init: CounterController(),
+                builder: (counterController) {
+                  return Text(
+                    "${counterController.counterModel.value.count}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  );
+                })
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.put(CounterController());
-          counterController.incrementCounter();
+          Get.find<CounterController>().incrementCounter();
         },
         child: const Icon(Icons.add),
       ),
