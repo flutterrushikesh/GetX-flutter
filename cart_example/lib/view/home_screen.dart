@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 ProductModel productObj = ProductModel(
                   description: descriptionController.text,
-                  imageLink: imageController.text,
+                  imageLink: imageController.text.obs,
                   price: priceController.text,
                   isFavorite: false.obs,
                   productCount: 0.obs,
@@ -88,13 +88,8 @@ class HomeScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Get.put(ProductController());
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ShowDetailScreen();
-                    },
-                  ),
+                Get.to(
+                  () => ShowDetailScreen(),
                 );
               },
               child: const Text("Show products"),

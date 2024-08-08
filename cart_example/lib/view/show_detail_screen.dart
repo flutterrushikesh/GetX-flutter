@@ -19,9 +19,7 @@ class ShowDetailScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Get.put(IsfavoriteController());
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return IsfavoriteScreen();
-              }));
+              Get.to(() => IsfavoriteScreen());
             },
             icon: const Icon(
               Icons.favorite_border,
@@ -35,7 +33,7 @@ class ShowDetailScreen extends StatelessWidget {
           return Column(
             children: [
               Image.network(
-                localObj.productModel[index].imageLink,
+                localObj.productModel[index].imageLink.value,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
